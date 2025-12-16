@@ -80,7 +80,16 @@ All systems are implemented in **GML only**.
 
 ---
 
-## 💾 Save/Load System
+## � Development Progress
+
+* Added save/load system - *December 16, 2025*
+* Added pause menu - *December 16, 2025*
+* Added sound settings - *December 16, 2025*
+* Added game manager - *December 16, 2025*
+
+---
+
+## �💾 Save/Load System
 
 A complete, production-ready save/load system has been implemented with:
 
