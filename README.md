@@ -1,40 +1,97 @@
-# Hell-Captains
+# Hell Captains
 
-A GameMaker Studio 2 project featuring a complete save/load system, pause menu, and sound settings implementation.
+**Hell Captains** is a **GameMaker Studio–based 2D game project** set in an alternate World War II dieselpunk universe featuring flying warships, interior ship combat, and crew-driven systems.
 
-## 📊 Project Stats
+---
 
-- **Scripts**: 8 GML scripts
-- **Objects**: 4 objects (13 event files)
-- **Documentation**: 8 comprehensive guides
-- **Total Files**: 29
-- **Save Slots**: 3 (expandable)
-- **Setup Time**: ~5 minutes
+## 🚨 Language & Engine Requirements (IMPORTANT)
 
-## Features
+This project uses **GameMaker Language (GML) exclusively**.
 
-### 💾 Save/Load System
-- DS Map-based save structure with JSON encoding
-- Automatic instance recreation with full property restoration
-- Multiple save slots (expandable)
-- Custom variable support via User Events
-- Memory leak prevention with proper cleanup
-- Error handling for corrupt or missing files
+* **All gameplay code is written in GML**
+* **No other programming languages are used**
+* Do **not** generate or suggest code in:
 
-### ⏸️ Pause Menu
-- Instance deactivation for true game pause
-- State machine-based navigation
-- Visual feedback with selection highlighting
-- Semi-transparent overlay
-- Save confirmation messages
+  * JavaScript
+  * TypeScript
+  * C#
+  * C++
+  * Python
+  * Lua
+  * Pseudocode
 
-### 🔊 Sound Settings
-- Master volume control (0-100%)
-- Real-time adjustment
-- Persistent settings saved with game data
-- Visual percentage display
+If you are generating code for this project, it **must be valid GML** compatible with **GameMaker Studio 2**.
 
-## Quick Start
+---
+
+## 🧐 Coding Expectations
+
+* Use **native GML syntax only**
+* Follow GameMaker Studio 2 conventions
+* Prefer **structs, enums, and state machines**
+* Avoid deprecated or legacy GameMaker syntax unless explicitly noted
+* Assume code is running inside standard GMS2 events (Create, Step, Draw, etc.)
+
+Example constructs that are expected and encouraged:
+
+* `enum`
+* `struct`
+* `switch` statements
+* `with` blocks
+* `instance_create_layer`
+* `collision_line`, `instance_place`, etc.
+
+---
+
+## 📂 Naming Conventions
+
+Use consistent GameMaker-style naming:
+
+* Objects: `obj_`
+* Scripts: `scr_`
+* Enums: `enum_`
+* Struct instances: `*_data` or `*_stats`
+* State variables: `state`, `substate`
+
+Example:
+
+```gml
+enum enum_ai_state {
+    IDLE,
+    PATROL,
+    ALERT,
+    COMBAT
+}
+```
+
+---
+
+## 🎮 Project Scope (High-Level)
+
+Hell Captains focuses on:
+
+* Interior combat aboard massive flying warships
+* Crew AI with defined roles and behaviors
+* Depth-based cover and targeting
+* Destructible ship interiors
+* Weapon and equipment systems driven by data structures
+
+All systems are implemented in **GML only**.
+
+---
+
+## 💾 Save/Load System
+
+A complete, production-ready save/load system has been implemented with:
+
+* DS Map-based save structure with JSON encoding
+* Automatic instance recreation with full property restoration
+* Multiple save slots (3 slots, expandable)
+* Custom variable support via User Events 6 & 7
+* Memory leak prevention with proper cleanup
+* Error handling for corrupt or missing files
+
+### Quick Start
 
 **⚡ [5-Minute Setup Guide](GETTING_STARTED.md)** - Get running fast!
 
@@ -42,7 +99,7 @@ A GameMaker Studio 2 project featuring a complete save/load system, pause menu, 
 2. **Make Objects Saveable**: Set parent to `obj_saveable` and implement User Events 6 & 7
 3. **Test**: Press ESC to open pause menu, save/load game
 
-## Documentation
+### Save System Documentation
 
 - [**🚀 Getting Started**](GETTING_STARTED.md) - 5-minute quick start guide
 - [**📖 Save System README**](SAVE_SYSTEM_README.md) - Complete system documentation
@@ -52,48 +109,18 @@ A GameMaker Studio 2 project featuring a complete save/load system, pause menu, 
 - [**📐 Architecture**](ARCHITECTURE.md) - System diagrams and flow charts
 - [**📑 File Index**](FILE_INDEX.md) - Complete file reference
 
-## Project Structure
+### Usage Example
 
-```
-Hell-Captains/
-├── scripts/
-│   ├── scr_build_save_data/      # Build save data structure
-│   ├── scr_save_game/            # Save to disk
-│   ├── scr_load_game/            # Load from disk
-│   ├── scr_restore_instances/    # Recreate saved instances
-│   ├── scr_destroy_save_data/    # Memory cleanup
-│   ├── scr_save_exists/          # Check save file
-│   ├── scr_debug_save_system/    # Debug utilities
-│   └── enum_menu_state/          # Menu state enum
-├── objects/
-│   ├── obj_game_manager/         # Persistent game state
-│   ├── obj_menu_controller/      # Pause menu
-│   ├── obj_saveable/             # Base saveable object
-│   └── obj_enemy_example/        # Example implementation
-└── saves/                        # Save files (auto-created)
-    ├── save0.sav
-    ├── save1.sav
-    └── save2.sav
-```
-
-## Usage Examples
-
-### Save Game
 ```gml
+// Save game
 scr_save_game(0); // Save to slot 0
-```
 
-### Load Game
-```gml
+// Load game
 if (scr_save_exists(0)) {
     scr_load_game(0);
 }
-```
 
-### Make Object Saveable
-```gml
-// Set parent to obj_saveable
-
+// Make any object saveable - set parent to obj_saveable
 // User Event 6 - Save
 other.extra_data[? "health"] = health;
 other.extra_data[? "ammo"] = ammo;
@@ -105,56 +132,20 @@ if (ds_exists(other.loaded_extra_data, ds_type_map)) {
 }
 ```
 
-## Global Variables
+---
 
-Auto-saved variables:
-- `global.player_health` - Current health
-- `global.player_max_health` - Maximum health
-- `global.player_score` - Player score
-- `global.current_level` - Current level
-- `global.volume` - Audio volume (0.0-1.0)
+## 📌 Notes for AI Assistance (Copilot / LLMs)
 
-## Controls
+When assisting with this repository:
 
-**Pause Menu**
-- `ESC` - Open/close
-- `↑/↓` - Navigate
-- `Enter/Space` - Select
+* Always output **GML**
+* Match existing naming patterns
+* Assume this is a **GameMaker Studio 2 project**
+* Do not invent APIs from other engines or languages
+* The save/load system is fully implemented - extend it for new objects by inheriting from `obj_saveable`
 
-**Sound Settings**
-- `←/→` - Adjust volume
+---
 
-## GameMaker Conventions
+## 💄 License
 
-Following GML best practices:
-- `obj_*` for objects
-- `scr_*` for scripts
-- `enum_*` for enumerations
-- Proper DS structure cleanup
-- Try-catch error handling
-
-## Technical Details
-
-- **Save Format**: JSON-encoded DS maps
-- **Save Location**: `working_directory + "saves/"`
-- **Instance Saving**: Via User Event 6
-- **Instance Loading**: Via User Event 7
-- **Pause Method**: Instance deactivation
-
-## Debug Commands
-
-```gml
-scr_debug_print_save(0);      // Print save data
-scr_debug_list_saves();       // List all saves
-scr_debug_delete_save(0);     // Delete a save
-scr_debug_test_save_load();   // Test save/load cycle
-```
-
-## Requirements
-
-- GameMaker Studio 2 (GMS2)
-- GML (GameMaker Language)
-
-## License
-
-This project is provided as-is for educational and development purposes.
+(TBD)
